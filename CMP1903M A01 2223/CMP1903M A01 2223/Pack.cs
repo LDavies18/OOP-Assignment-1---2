@@ -92,6 +92,9 @@ namespace CMP1903M_A01_2223
         public static List<string> dealCard(int amount) // int here is input from user in program
         {
             //Deals the number of cards specified by 'amount'
+            if (amount > 52)
+                amount = 52;
+               
             for (int m = 0 ; m > amount; m--)
             {
                 dealt_pack.Add(shuffled_pack[m]);
