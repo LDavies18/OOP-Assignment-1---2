@@ -11,11 +11,11 @@ namespace CMP1903M_A01_2223
     class Pack
     {
         //list generation for deck and shuffled decks
-        public static List<string> pack = new List<string>(); // original
-        public static List<string> shuffled_pack = new List<string>(); //for shuffled decks
-        public static List<string> half_pack_1= new List<string>(); // For R Shuffle
-        public static List<string> half_pack_2 = new List<string>(); // For R Shuffle
-        public static List<string> dealt_pack = new List<string>(); //for dealt pack
+        public static List<Card> pack = new List<Card>(); // original
+        public static List<Card> shuffled_pack = new List<Card>(); //for shuffled decks
+        public static List<Card> half_pack_1= new List<Card>(); // For R Shuffle
+        public static List<Card> half_pack_2 = new List<Card>(); // For R Shuffle
+        public static List<Card> dealt_pack = new List<Card>(); //for dealt pack
         int pack_length = 2;
 
         public Pack()
@@ -29,8 +29,7 @@ namespace CMP1903M_A01_2223
                 for (int card_value = 1; card_value < 14; card_value++)  //Loops for all 13 Values
                 {
                     Card New_Card = new Card();  //generates card object 
-                    string New_Card_str = New_Card.ToString(); //converts card generated into a string
-                    pack.Add(New_Card_str); //adds generated card to the pack list 
+                    pack.Add(New_Card); //adds generated card to the pack list 
                
                 }
             }
@@ -46,7 +45,7 @@ namespace CMP1903M_A01_2223
                     Console.WriteLine("Fisher Yates Shuffle Selected");
                     Random fy_rnd = new Random();
                     int fy_val = fy_rnd.Next(i);   //generates a random int within the limit of i
-                    string card_pick = pack[i];   // makes variable of card selected at random location
+                    Card card_pick = pack[i];   // makes variable of card selected at random location
                     shuffled_pack.Add(card_pick);  // adds card selected to new shuffled deck
                     pack.Remove(card_pick);  //removes card selected from the original deck
 
@@ -82,14 +81,14 @@ namespace CMP1903M_A01_2223
                 
 
         }
-        public static string deal()
+        public static Card deal()
         { 
             //Deals one card
-            string one_card_deal = shuffled_pack[0];
+            Card one_card_deal = shuffled_pack[0];
             return one_card_deal;
 
         }
-        public static List<string> dealCard(int amount) // int here is input from user in program
+        public static List<Card> dealCard(int amount) // int here is input from user in program
         {
             //Deals the number of cards specified by 'amount'
             if (amount > 52)
@@ -99,7 +98,8 @@ namespace CMP1903M_A01_2223
             {
                 dealt_pack.Add(shuffled_pack[m]);
             }
-            return dealt_pack;
+            Console.WriteLine(dealt_pack);
+            return dealt_pack ;
         }
     }
 }
