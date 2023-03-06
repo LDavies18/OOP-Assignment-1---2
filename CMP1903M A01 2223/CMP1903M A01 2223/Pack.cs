@@ -15,7 +15,8 @@ namespace CMP1903M_A01_2223
         public static List<string> shuffled_pack = new List<string>(); //for shuffled decks
         public static List<string> half_pack_1= new List<string>(); // For R Shuffle
         public static List<string> half_pack_2 = new List<string>(); // For R Shuffle
-        int pack_length = 52;
+        public static List<string> dealt_pack = new List<string>(); //for dealt pack
+        int pack_length = 2;
 
         public Pack()
         {
@@ -81,16 +82,21 @@ namespace CMP1903M_A01_2223
                 
 
         }
-        public static Card deal()
-        {
-            return new Card();
+        public static string deal()
+        { 
             //Deals one card
+            string one_card_deal = shuffled_pack[0];
+            return one_card_deal;
 
         }
-        public static List<Card> dealCard(int amount) // int here is input from user in program
+        public static List<string> dealCard(int amount) // int here is input from user in program
         {
-            return new List<Card>();
             //Deals the number of cards specified by 'amount'
+            for (int m = 0 ; m > amount; m--)
+            {
+                dealt_pack.Add(shuffled_pack[m]);
+            }
+            return dealt_pack;
         }
     }
 }
