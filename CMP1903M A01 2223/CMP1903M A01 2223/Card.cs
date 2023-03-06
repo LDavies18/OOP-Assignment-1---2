@@ -16,9 +16,6 @@ namespace CMP1903M_A01_2223
 
         private int card_value;
         private int card_suit;
-        private string gen_card;
-        public string str_suit;
-        public string str_num;
 
         //allows card value to be public/unchangeable value
         public int Value

@@ -12,6 +12,13 @@ namespace CMP1903M_A01_2223
         {
             //Console.WriteLine("Please enter a shuffle to use (Fisher, Riffle, No): ");
             //ypeOfShuffle = Console.ReadLine();
+            //object pack class with variable input from user e.g. shuffle type/cards to deal. 
+
+            Testing tests = new Testing();
+            tests.runtests();
+
         }
+
+        
     }
 }
