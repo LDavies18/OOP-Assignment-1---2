@@ -37,7 +37,7 @@ namespace CMP1903M_A01_2223
             }
         }
 
-        public override string ToString()
+        public override string ToString()  //overides the ToString function so that it returns the values from the object into this specific string layout. 
         {
             return $"|{Suit}~{Value}|";
         }

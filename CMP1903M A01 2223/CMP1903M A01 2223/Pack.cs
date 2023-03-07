@@ -36,11 +36,11 @@ namespace CMP1903M_A01_2223
 
         public static bool shuffleCardPack(int typeOfShuffle) // int here is input from user in program - bool needs false at the end of if/else statements
         {
-            //Shuffles the pack based on the type of shuffle
+            //Shuffles the pack based on the type of shuffle from user int input 
             if (typeOfShuffle == 1) //Fisher Yates Shuffle 
             {
-                List<Card> shuffled_pack_fy = new List<Card>();
-                Random fy_rnd = new Random();
+                List<Card> shuffled_pack_fy = new List<Card>(); //generates new list called shuffled_pack to store shuffled cards
+                Random fy_rnd = new Random();  //generates new random number 
                 for (int i = 52; i > 0; i--)
                 {
                     int fy_val = fy_rnd.Next(i);   //generates a random int within the limit of i
@@ -49,12 +49,12 @@ namespace CMP1903M_A01_2223
                     pack.Remove(card_pick);  //removes card selected from the original deck
 
                 }
-                pack.Clear();
-                pack.AddRange(shuffled_pack_fy);
+                pack.Clear();  // resets the pack so that it is empty 
+                pack.AddRange(shuffled_pack_fy); // transfers shuffled pack to the orginal pack
             }
             else if (typeOfShuffle == 2)// Riffle Shuffle
             {
-                List<Card> shuffled_pack_r = new List<Card>();
+                List<Card> shuffled_pack_r = new List<Card>(); //creates new lists for shuffled pack, and two half packs to split the original pack in two
                 List<Card> half_pack_1 = new List<Card>();
                 List<Card> half_pack_2 = new List<Card>();
                 for (int j = 0; j < 26; j++)
@@ -70,11 +70,11 @@ namespace CMP1903M_A01_2223
                     shuffled_pack_r.Add(half_pack_1[l]);
                     shuffled_pack_r.Add(half_pack_2[l]); // adds first card  of each half to the shuffled deck         
                 }
-                pack.Clear();
-                pack.AddRange(shuffled_pack_r);
+                pack.Clear(); // resets the pack so that it is empty
+                pack.AddRange(shuffled_pack_r); // transfers shuffled pack to the orginal pack
 
             }
-            else if (typeOfShuffle == 3)
+            else if (typeOfShuffle == 3) //no shuffle
             {
                 Console.WriteLine("No Shuffle Selected");
                 return true;
@@ -85,48 +85,48 @@ namespace CMP1903M_A01_2223
                 
 
         }
-        public static Card deal()
+        public static Card deal() 
         { 
             //Deals one card
-            Card one_card_deal = pack[dealt_card_count];
-            dealt_card_count++;
-            return one_card_deal;
+            Card one_card_deal = pack[dealt_card_count]; //reads the selected card from the pack.
+            dealt_card_count++;// increaments by one so that the next card can be read if deal is called again.
+            return one_card_deal; //returns the card selected
 
         }
         public static List<Card> dealCard(int amount) // int here is input from user in program
         {
             //Deals the number of cards specified by 'amount'
-            List<Card> dealt_pack = new List<Card>();
-            if (pack.Count > amount)
+            List<Card> dealt_pack = new List<Card>(); //generates a new pack for the cards to be dealt from
+            if (pack.Count > amount) //amount is entered by user in testing to deal that specific amount of cards
             {
                 if (amount > 52)
                     amount = 52;
 
                 for (int m = 0; m < amount; m++)
                 {
-                    dealt_pack.Add(pack[0]);
-                    pack.Remove(pack[0]);
+                    dealt_pack.Add(pack[0]);//adds the original pack to the dealt pack
+                    pack.Remove(pack[0]); //removes the remaing cards from the original pack 
                 }
             }
             else
             {
-                Console.WriteLine("Not enough cards to deal");
+                Console.WriteLine("Not enough cards to deal"); //if amount entered is too high this message will be printed
             }
 
             return dealt_pack;
             
         }
-        public void format_cards_very_aesthetically()
+        public void format_cards_very_aesthetically() //Additonal Method to format the cards 
         {
-            foreach (Card card in pack)
+            foreach (Card card in pack) //Takes the value from the object and makes it into a readable string
             {
                 Console.Write($"|{card.Suit}~{card.Value}|");
             }
 
         }
-        public void format_cards_very_aesthetically(List<Card> p)
+        public void format_cards_very_aesthetically(List<Card> p)  //Additonal Method to format the cards 
         {
-            foreach (Card card in p)
+            foreach (Card card in p)//Takes the value from the object and makes it into a readable string
             {
                 Console.Write($"|{card.Suit}~{card.Value}|");
             }
