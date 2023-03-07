@@ -23,12 +23,21 @@ namespace CMP1903M_A01_2223
             {
                 Console.WriteLine("Error");
             }
-            else;
+            else
             {
                 Console.WriteLine("\n Demo for Shuffle");
                 Pack.shuffleCardPack(test_choice);
                 new_pack.format_cards_very_aesthetically();
+                Card c = Pack.deal();
+                Console.WriteLine("Card Dealt:");
+                Console.WriteLine(c.ToString());
+
+                Console.WriteLine("\n How many cards would you like to deal?: ");
+                int deal_choice = Int32.Parse(Console.ReadLine());
+                List<Card>dealt = Pack.dealCard(deal_choice);
+                new_pack.format_cards_very_aesthetically(dealt);
             }
+            
 
 
         } 

@@ -97,18 +97,36 @@ namespace CMP1903M_A01_2223
         {
             //Deals the number of cards specified by 'amount'
             List<Card> dealt_pack = new List<Card>();
-            if (amount > 52)
-                amount = 52;
-               
-            for (int m = 0 ; m < amount; m++)
+            if (pack.Count > amount)
             {
-                dealt_pack.Add(pack[m]);
+                if (amount > 52)
+                    amount = 52;
+
+                for (int m = 0; m < amount; m++)
+                {
+                    dealt_pack.Add(pack[0]);
+                    pack.Remove(pack[0]);
+                }
             }
+            else
+            {
+                Console.WriteLine("Not enough cards to deal");
+            }
+
             return dealt_pack;
+            
         }
         public void format_cards_very_aesthetically()//the menty-b took it too far, xoxo go piss gurl
         {
             foreach (Card card in pack)
+            {
+                Console.Write($"|{card.Suit}~{card.Value}|");
+            }
+
+        }
+        public void format_cards_very_aesthetically(List<Card> p)//the menty-b took it too far, xoxo go piss gurl
+        {
+            foreach (Card card in p)
             {
                 Console.Write($"|{card.Suit}~{card.Value}|");
             }
