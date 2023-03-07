@@ -116,7 +116,7 @@ namespace CMP1903M_A01_2223
             return dealt_pack;
             
         }
-        public void format_cards_very_aesthetically()//the menty-b took it too far, xoxo go piss gurl
+        public void format_cards_very_aesthetically()
         {
             foreach (Card card in pack)
             {
@@ -124,7 +124,7 @@ namespace CMP1903M_A01_2223
             }
 
         }
-        public void format_cards_very_aesthetically(List<Card> p)//the menty-b took it too far, xoxo go piss gurl
+        public void format_cards_very_aesthetically(List<Card> p)
         {
             foreach (Card card in p)
             {
