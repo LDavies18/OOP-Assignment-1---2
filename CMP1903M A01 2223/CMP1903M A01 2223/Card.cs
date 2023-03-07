@@ -12,7 +12,35 @@ namespace CMP1903M_A01_2223
         //Value: numbers 1 - 13
         //Suit: numbers 1 - 4
         //The 'set' methods for these properties could have some validation
-        public int Value { get; set; }
-        public int Suit { get; set; }
+        //For one card to then be stored in a pack.
+
+        private int card_value;
+        private int card_suit;
+
+        //allows card value to be public/unchangeable value
+        public int Value
+        {
+            get { return card_value; }
+            set
+            {
+                card_value = value;
+            }
+        }
+
+       //allows card suit to be public/unchangeable value
+        public int Suit
+        {
+            get { return card_suit; }
+            set
+            {
+                card_suit = value;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"|{Suit}~{Value}|";
+        }
+
     }
 }
