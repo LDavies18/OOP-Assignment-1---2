@@ -37,13 +37,5 @@ namespace CMP1903M_A01_2223
             }
         }
 
-        public string GenCard
-        {
-            get 
-            {
-                return "value:" + card_value + "suit:" + card_suit;
-            }
-        }
-
     }
 }

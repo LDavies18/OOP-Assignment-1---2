@@ -12,11 +12,8 @@ namespace CMP1903M_A01_2223
     {
         //list generation for deck and shuffled decks
         public static List<Card> pack = new List<Card>(); // original
-        public static List<Card> shuffled_pack = new List<Card>(); //for shuffled decks
-        public static List<Card> half_pack_1= new List<Card>(); // For R Shuffle
-        public static List<Card> half_pack_2 = new List<Card>(); // For R Shuffle
-        public static List<Card> dealt_pack = new List<Card>(); //for dealt pack
         int pack_length = 2;
+        private static int dealt_card_count = 0;
 
         public Pack()
         {
@@ -24,11 +21,13 @@ namespace CMP1903M_A01_2223
             //values of card pack
             //geenerates all values of card for one suit at a time
 
-            for (int card_suit = 1; card_suit < 5; card_suit ++)  //Loops for all 4 suits
+            for (int card_suit = 1; card_suit < 5; card_suit++)  //Loops for all 4 suits
             {
-                for (int card_value = 1; card_value < 14; card_value++)  //Loops for all 13 Values
+                for (int card_value = 1;card_value < 14; card_value++)  //Loops for all 13 Values
                 {
                     Card New_Card = new Card();  //generates card object 
+                    New_Card.Suit = card_suit;
+                    New_Card.Value = card_value;
                     pack.Add(New_Card); //adds generated card to the pack list 
                
                 }
@@ -40,40 +39,45 @@ namespace CMP1903M_A01_2223
             //Shuffles the pack based on the type of shuffle
             if (typeOfShuffle == 1) //Fisher Yates Shuffle 
             {
-                for (int i = 51; i > 0; i--)
+                List<Card> shuffled_pack_fy = new List<Card>();
+                Random fy_rnd = new Random();
+                for (int i = 52; i > 0; i--)
                 {
-                    Console.WriteLine("Fisher Yates Shuffle Selected");
-                    Random fy_rnd = new Random();
                     int fy_val = fy_rnd.Next(i);   //generates a random int within the limit of i
-                    Card card_pick = pack[i];   // makes variable of card selected at random location
-                    shuffled_pack.Add(card_pick);  // adds card selected to new shuffled deck
+                    Card card_pick = pack[fy_val];   // makes variable of card selected at random location
+                    shuffled_pack_fy.Add(card_pick);  // adds card selected to new shuffled deck
                     pack.Remove(card_pick);  //removes card selected from the original deck
 
                 }
+                pack.Clear();
+                pack.AddRange(shuffled_pack_fy);
             }
             else if (typeOfShuffle == 2)// Riffle Shuffle
             {
-                Console.WriteLine("Riffle Shuffle Selected");
+                List<Card> shuffled_pack_r = new List<Card>();
+                List<Card> half_pack_1 = new List<Card>();
+                List<Card> half_pack_2 = new List<Card>();
                 for (int j = 0; j < 26; j++)
                 {
                     half_pack_1.Add(pack[j]); // splits first half of deck into half 1
                 }
-                for (int k = 0; k < 26; k++)
+                for (int k = 26; k < 52; k++)
                 {
                     half_pack_2.Add(pack[k]); //splits second half of deck into half 2
                 }
                 for (int l = 0; l < 26; l++)
                 {
-                    shuffled_pack.Add(half_pack_1[l]);
-                    shuffled_pack.Add(half_pack_2[l]); // adds first card  of each half to the shuffled deck         
+                    shuffled_pack_r.Add(half_pack_1[l]);
+                    shuffled_pack_r.Add(half_pack_2[l]); // adds first card  of each half to the shuffled deck         
                 }
-
+                pack.Clear();
+                pack.AddRange(shuffled_pack_r);
 
             }
             else if (typeOfShuffle == 3)
             {
                 Console.WriteLine("No Shuffle Selected");
-                shuffled_pack.AddRange(pack); //transfers orginal deck to shuffled deck so it can be used in the deal
+                return true;
             }
             else return false;
 
@@ -84,22 +88,30 @@ namespace CMP1903M_A01_2223
         public static Card deal()
         { 
             //Deals one card
-            Card one_card_deal = shuffled_pack[0];
+            Card one_card_deal = pack[dealt_card_count];
+            dealt_card_count++;
             return one_card_deal;
 
         }
         public static List<Card> dealCard(int amount) // int here is input from user in program
         {
             //Deals the number of cards specified by 'amount'
+            List<Card> dealt_pack = new List<Card>();
             if (amount > 52)
                 amount = 52;
                
-            for (int m = 0 ; m > amount; m--)
+            for (int m = 0 ; m < amount; m++)
             {
-                dealt_pack.Add(shuffled_pack[m]);
+                dealt_pack.Add(pack[m]);
             }
-            Console.WriteLine(dealt_pack);
-            return dealt_pack ;
+            return dealt_pack;
+        }
+        public void format_cards_very_aesthetically()//the menty-b took it too far, xoxo go piss gurl
+        {
+            foreach (Card card in pack)
+            {
+                Console.Write($"|{card.Suit}~{card.Value}|");
+            }
         }
     }
 }
